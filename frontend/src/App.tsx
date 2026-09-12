@@ -79,17 +79,44 @@ export default function App() {
           </div>
         </section>
 
-        {error && (
+        {loading && (
           <section className="section">
-            <div className="error">{error}</div>
+            <div className="loading">
+              <span className="spinner" aria-hidden="true" />
+              Running your query...
+            </div>
           </section>
         )}
 
-        {result && (
+        {error && (
+          <section className="section">
+            <div className="error">
+              <strong>Something went wrong.</strong> {error}
+            </div>
+          </section>
+        )}
+
+        {result && !loading && (
           <>
             <section className="section">
+              <h2>Question</h2>
+              <p className="question-echo">{result.question}</p>
+            </section>
+
+            <section className="section">
               <h2>Generated SQL</h2>
-              <pre>{result.sql}</pre>
+              <pre>{result.generated_sql}</pre>
+            </section>
+
+            <section className="section stats-row">
+              <div className="stat">
+                <span className="stat-label">Execution Time</span>
+                <span className="stat-value">{result.execution_time}s</span>
+              </div>
+              <div className="stat">
+                <span className="stat-label">Number of Results</span>
+                <span className="stat-value">{result.row_count}</span>
+              </div>
             </section>
 
             <section className="section">

@@ -11,6 +11,7 @@ Run with:  uvicorn main:app --reload
 """
 
 import re
+import time
 
 from dotenv import load_dotenv
 
@@ -91,13 +92,19 @@ def query(request: QueryRequest):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+    start = time.perf_counter()
     try:
         columns, rows = database.run_select_query(sql)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to run SQL: {e}")
+    execution_time = round(time.perf_counter() - start, 4)
 
     return {
-        "sql": sql,
+        "question": question,
+        "generated_sql": sql,
         "columns": columns,
         "rows": rows,
+        "row_count": len(rows),
+        "execution_time": execution_time,
+        "status": "success",
     }

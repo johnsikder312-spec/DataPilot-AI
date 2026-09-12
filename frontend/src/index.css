@@ -154,3 +154,63 @@ th {
   padding: 10px 12px;
   border-radius: 6px;
 }
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4f46e5;
+  font-size: 14px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d8d8f8;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.question-echo {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 0;
+  color: #333;
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.stat {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px 16px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+}
+
+.stat-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4f46e5;
+}

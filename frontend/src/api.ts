@@ -8,9 +8,13 @@
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 export interface QueryResult {
-  sql: string;
+  question: string;
+  generated_sql: string;
   columns: string[];
   rows: unknown[][];
+  row_count: number;
+  execution_time: number;
+  status: string;
 }
 
 export async function askQuestion(question: string): Promise<QueryResult> {
